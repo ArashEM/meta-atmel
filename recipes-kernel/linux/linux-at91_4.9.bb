@@ -8,6 +8,7 @@ inherit kernel
 
 RDEPENDS_kernel-base=""
 FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+# FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 PV = "4.9+git${SRCPV}"
 
@@ -18,6 +19,9 @@ SRCREV = "29796588eb6a4c89795baaea3035764d15d0e44a"
 KBRANCH = "linux-4.9-at91"
 SRC_URI = "git://github.com/linux4sam/linux-at91.git;protocol=git;branch=${KBRANCH}"
 SRC_URI += "file://defconfig"
+
+# AT91SAM9260EK especific configuration
+SRC_URI_append_at91sam9260ek = " file://jffs2.cfg"
 
 python __anonymous () {
 	if d.getVar('UBOOT_FIT_IMAGE', True) == 'xyes':
